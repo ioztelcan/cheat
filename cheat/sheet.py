@@ -57,6 +57,13 @@ class Sheet:
 
     def read(self, sheet):
         """ Returns the contents of the cheatsheet as a String """
+
+        if not self._exists(sheet+".md"):
+            pass
+        else:
+            with io.open(self._path(sheet+".md"), encoding='utf-8') as cheatfile:
+                return cheatfile.read()
+
         if not self._exists(sheet):
             Utils.die('No cheatsheet found for ' + sheet)
 
